@@ -19,7 +19,7 @@ export const create = os
 		const { files, maxWidth } = ctx.input;
 		const insertValues = [];
 		const now = new Date();
-		const uploadPath = `./public/uploads/${now.getFullYear()}/${now.getMonth() + 1}`;
+		const uploadPath = `public/uploads/${now.getFullYear()}/${now.getMonth() + 1}`;
 
 		if (!fs.existsSync(uploadPath)) {
 			await fs.promises.mkdir(uploadPath, { recursive: true });
