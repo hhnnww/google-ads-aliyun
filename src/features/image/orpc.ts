@@ -73,7 +73,7 @@ const remove = os.input(z.object({ id: z.number() })).handler(async (ctx) => {
 	const imageObj = await db.select().from(image).where(eq(image.id, id));
 	const baseStorageDir =
 		process.env.NODE_ENV === "production"
-			? "/wwwroot/inxizang.com/storage/uploads"
+			? "/wwwroot/inxizang.com/storage"
 			: path.join(process.cwd(), "public", "uploads");
 	const imagePath = `${baseStorageDir}${imageObj[0].url}`;
 
