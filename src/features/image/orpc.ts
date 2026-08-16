@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import { os } from "@orpc/server";
+import { desc } from "drizzle-orm";
 import sharp from "sharp"; // 修正点 1：使用默认导入
 import { z } from "zod";
 import { db } from "#/db/index.ts";
@@ -51,6 +52,24 @@ const create = os
 			.returning();
 	});
 
+export const list = os
+	.input(
+		z.object({
+			pageNum: z.number().default(1),
+			pageSize: z.number().default(10),
+		}),
+	)
+	.handler(async (ctx) => {
+		const { pageNum, pageSize } = ctx.input;
+		return await db
+			.select()
+			.from(image)
+			.orderBy(desc(image.id))
+			.offset((pageNum - 1) * pageSize)
+			.limit(pageSize);
+	});
+
 export const imageRouter = {
 	create,
+	list,
 };
