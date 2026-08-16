@@ -14,9 +14,7 @@ export const ImageCreateButton = (props: { onSuccess: () => void }) => {
 	const [open, setOpen] = useState(false);
 	return (
 		<Dialog open={open} onOpenChange={setOpen}>
-			<DialogTrigger>
-				<Button>创建图片</Button>
-			</DialogTrigger>
+			<DialogTrigger render={(props) => <Button {...props}>创建图片</Button>} />
 
 			<DialogContent>
 				<DialogHeader>
