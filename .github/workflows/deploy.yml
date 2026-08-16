@@ -30,7 +30,7 @@ jobs:
         with:
           SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
           ARGS: "-avzr --delete"
-          SOURCE: ".output/ ecosystem.config.js"
+          SOURCE: ".output/ ecosystem.config.js dev.db"
           REMOTE_HOST: ${{ secrets.SERVER_HOST }}
           REMOTE_USER: ${{ secrets.SERVER_USER }}
           TARGET: "/wwwroot/inxizang.com"
