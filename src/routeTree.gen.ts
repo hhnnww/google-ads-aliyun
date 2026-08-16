@@ -10,12 +10,19 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AdminRouteImport } from './routes/admin'
 import { Route as ApiSplatRouteImport } from './routes/api.$'
 import { Route as ApiRpcSplatRouteImport } from './routes/api.rpc.$'
+import { Route as AdminImageListPagenumRouteImport } from './routes/admin.image.list.$pagenum'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiSplatRoute = ApiSplatRouteImport.update({
@@ -28,33 +35,52 @@ const ApiRpcSplatRoute = ApiRpcSplatRouteImport.update({
   path: '/api/rpc/$',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminImageListPagenumRoute = AdminImageListPagenumRouteImport.update({
+  id: '/image/list/$pagenum',
+  path: '/image/list/$pagenum',
+  getParentRoute: () => AdminRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteWithChildren
   '/api/$': typeof ApiSplatRoute
   '/api/rpc/$': typeof ApiRpcSplatRoute
+  '/admin/image/list/$pagenum': typeof AdminImageListPagenumRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteWithChildren
   '/api/$': typeof ApiSplatRoute
   '/api/rpc/$': typeof ApiRpcSplatRoute
+  '/admin/image/list/$pagenum': typeof AdminImageListPagenumRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteWithChildren
   '/api/$': typeof ApiSplatRoute
   '/api/rpc/$': typeof ApiRpcSplatRoute
+  '/admin/image/list/$pagenum': typeof AdminImageListPagenumRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/api/$' | '/api/rpc/$'
+  fullPaths:
+    '/' | '/admin' | '/api/$' | '/api/rpc/$' | '/admin/image/list/$pagenum'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/api/$' | '/api/rpc/$'
-  id: '__root__' | '/' | '/api/$' | '/api/rpc/$'
+  to: '/' | '/admin' | '/api/$' | '/api/rpc/$' | '/admin/image/list/$pagenum'
+  id:
+    | '__root__'
+    | '/'
+    | '/admin'
+    | '/api/$'
+    | '/api/rpc/$'
+    | '/admin/image/list/$pagenum'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminRoute: typeof AdminRouteWithChildren
   ApiSplatRoute: typeof ApiSplatRoute
   ApiRpcSplatRoute: typeof ApiRpcSplatRoute
 }
@@ -66,6 +92,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/$': {
@@ -82,11 +115,29 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiRpcSplatRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/image/list/$pagenum': {
+      id: '/admin/image/list/$pagenum'
+      path: '/image/list/$pagenum'
+      fullPath: '/admin/image/list/$pagenum'
+      preLoaderRoute: typeof AdminImageListPagenumRouteImport
+      parentRoute: typeof AdminRoute
+    }
   }
 }
 
+interface AdminRouteChildren {
+  AdminImageListPagenumRoute: typeof AdminImageListPagenumRoute
+}
+
+const AdminRouteChildren: AdminRouteChildren = {
+  AdminImageListPagenumRoute: AdminImageListPagenumRoute,
+}
+
+const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminRoute: AdminRouteWithChildren,
   ApiSplatRoute: ApiSplatRoute,
   ApiRpcSplatRoute: ApiRpcSplatRoute,
 }

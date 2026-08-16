@@ -11,7 +11,7 @@ export const image = sqliteTable("image", {
 	sizeStr: text().notNull().default(""),
 	alt: text().notNull().default(""),
 
-	createdAt: integer("created_at", { mode: "timestamp" }).default(
-		sql`(unixepoch())`,
-	),
+	createdAt: integer("created_at", { mode: "timestamp" })
+		.notNull()
+		.default(sql`(unixepoch())`),
 });
