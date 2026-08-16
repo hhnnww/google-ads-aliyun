@@ -9,6 +9,11 @@ import { image } from "#/db/schema.ts";
 import { convertSize } from "#/lib/convertSize.ts";
 import { faker } from "#/lib/faker.ts";
 
+const baseStorageDir =
+	process.env.NODE_ENV === "production"
+		? "/wwwroot/storage"
+		: path.join(process.cwd(), "public");
+
 export const create = os
 	.input(
 		z.object({
@@ -20,10 +25,6 @@ export const create = os
 		const { files, maxWidth } = ctx.input;
 		const insertValues = [];
 		const now = new Date();
-		const baseStorageDir =
-			process.env.NODE_ENV === "production"
-				? "/wwwroot/inxizang.com/storage/uploads"
-				: path.join(process.cwd(), "public", "uploads");
 
 		const uploadPath = `${baseStorageDir}/${now.getFullYear()}/${now.getMonth() + 1}`;
 
@@ -71,10 +72,7 @@ export const list = os
 const remove = os.input(z.object({ id: z.number() })).handler(async (ctx) => {
 	const { id } = ctx.input;
 	const imageObj = await db.select().from(image).where(eq(image.id, id));
-	const baseStorageDir =
-		process.env.NODE_ENV === "production"
-			? "/wwwroot/inxizang.com/storage"
-			: path.join(process.cwd(), "public");
+
 	const imagePath = `${baseStorageDir}${imageObj[0].url}`;
 
 	try {
