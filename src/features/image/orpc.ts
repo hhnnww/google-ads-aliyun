@@ -77,7 +77,12 @@ const remove = os.input(z.object({ id: z.number() })).handler(async (ctx) => {
 			: path.join(process.cwd(), "public");
 	const imagePath = `${baseStorageDir}${imageObj[0].url}`;
 
-	await fs.promises.unlink(imagePath);
+	try {
+		await fs.promises.unlink(imagePath);
+	} catch (err) {
+		console.log(err);
+	}
+
 	return await db.delete(image).where(eq(image.id, id)).returning();
 });
 
