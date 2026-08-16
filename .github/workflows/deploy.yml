@@ -44,5 +44,6 @@ jobs:
           key: ${{ secrets.SERVER_SSH_KEY }}
           script: |
             cd /wwwroot/inxizang.com
-            pm2 reload ecosystem.config.js
+            pm2 start ecosystem.config.js --update-env
+            pm2 save
             caddy reload --config /etc/caddy/Caddyfile
