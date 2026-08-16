@@ -71,7 +71,15 @@ export const list = os
 const remove = os.input(z.object({ id: z.number() })).handler(async (ctx) => {
 	const { id } = ctx.input;
 	const imageObj = await db.select().from(image).where(eq(image.id, id));
-	await fs.promises.unlink(`./public${imageObj[0].url}`);
+	const baseStorageDir =
+		process.env.NODE_ENV === "production"
+			? "/wwwroot/inxizang.com/storage/uploads"
+			: path.join(process.cwd(), "public", "uploads");
+	try {
+		await fs.promises.unlink(`${baseStorageDir}${imageObj[0].url}`);
+	} catch (err) {
+		console.log(err);
+	}
 	return await db.delete(image).where(eq(image.id, id)).returning();
 });
 
