@@ -1,4 +1,5 @@
 import fs from "node:fs";
+import path from "node:path";
 import { type InferRouterOutputs, os } from "@orpc/server";
 import { desc, eq } from "drizzle-orm";
 import sharp from "sharp"; // 修正点 1：使用默认导入
@@ -19,7 +20,12 @@ export const create = os
 		const { files, maxWidth } = ctx.input;
 		const insertValues = [];
 		const now = new Date();
-		const uploadPath = `public/uploads/${now.getFullYear()}/${now.getMonth() + 1}`;
+		const baseStorageDir =
+			process.env.NODE_ENV === "production"
+				? "/wwwroot/inxizang.com/storage/uploads"
+				: path.join(process.cwd(), "public", "uploads");
+
+		const uploadPath = `${baseStorageDir}/${now.getFullYear()}/${now.getMonth() + 1}`;
 
 		if (!fs.existsSync(uploadPath)) {
 			await fs.promises.mkdir(uploadPath, { recursive: true });
