@@ -74,7 +74,7 @@ const remove = os.input(z.object({ id: z.number() })).handler(async (ctx) => {
 	const baseStorageDir =
 		process.env.NODE_ENV === "production"
 			? "/wwwroot/inxizang.com/storage"
-			: path.join(process.cwd(), "public", "uploads");
+			: path.join(process.cwd(), "public");
 	const imagePath = `${baseStorageDir}${imageObj[0].url}`;
 
 	await fs.promises.unlink(imagePath);
