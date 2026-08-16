@@ -30,7 +30,7 @@ jobs:
         with:
           SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
           ARGS: "-avzr --delete"
-          SOURCE: ".output/ ecosystem.config.js" # 只需要传构建后的输出目录和配置文件
+          SOURCE: ".output/ ecosystem.config.js"
           REMOTE_HOST: ${{ secrets.SERVER_HOST }}
           REMOTE_USER: ${{ secrets.SERVER_USER }}
           TARGET: "/wwwroot/inxizang.com"
