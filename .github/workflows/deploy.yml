@@ -3,7 +3,7 @@ name: Deploy TanStack Start
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   build-and-deploy:
