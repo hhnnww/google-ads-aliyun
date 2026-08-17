@@ -1,5 +1,5 @@
 import { type InferRouterOutputs, os } from "@orpc/server";
-import { desc, eq } from "drizzle-orm";
+import { eq } from "drizzle-orm";
 import { z } from "zod";
 import { db } from "#/db/index.ts";
 import { travelogueComment } from "#/db/schema.ts";
@@ -12,29 +12,23 @@ const create = os
 	.handler(async (ctx) => {
 		return await db.insert(travelogueComment).values({
 			traveloguePageId: ctx.input.traveloguePageId,
-			title: "",
 			content: "",
 			author: faker.randomCNName(),
 			like: faker.randomNumber(0, 50),
 			dayAgo: faker.randomNumber(0, 5),
+			avatar: null,
 		});
 	});
 
 const list = os
-	.input(z.object({ traveloguePageId: z.number().optional() }))
+	.input(z.object({ traveloguePageId: z.number() }))
 	.handler(async (ctx) => {
-		let query = db
+		return await db
 			.select()
 			.from(travelogueComment)
-			.orderBy(desc(travelogueComment.id));
-
-		if (ctx.input.traveloguePageId) {
-			query = query.where(
+			.where(
 				eq(travelogueComment.traveloguePageId, ctx.input.traveloguePageId),
 			);
-		}
-
-		return await query;
 	});
 
 const update = os.input(travelogueCommentSelectSchema).handler(async (ctx) => {

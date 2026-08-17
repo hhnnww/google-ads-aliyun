@@ -1,6 +1,6 @@
-import { writeFile } from "node:fs/promises";
+import { mkdir, writeFile } from "node:fs/promises";
 import { createFileRoute } from "@tanstack/react-router";
-import { sharp } from "sharp";
+import sharp from "sharp";
 import { convertSize } from "#/lib/convertSize.ts";
 import { faker } from "#/lib/faker.ts";
 
@@ -20,7 +20,7 @@ export const Route = createFileRoute("/image/upload")({
 
 				const uploadPath = `/wwwroot/storage/uploads/${year}/${month}`;
 				const url = `https://inxizang.com/uploads/${year}/${month}/${fileName}`;
-
+				await mkdir(uploadPath, { recursive: true });
 				const webpBuffer = await sharp(Buffer.from(await file.arrayBuffer()))
 					.resize({ width: 1200, withoutEnlargement: true })
 					.webp({ quality: 80 })

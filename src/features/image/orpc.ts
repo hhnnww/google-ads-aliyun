@@ -1,12 +1,10 @@
 import fs from "node:fs";
 import { type InferRouterOutputs, os } from "@orpc/server";
 import { desc, eq } from "drizzle-orm";
-import sharp from "sharp"; // 修正点 1：使用默认导入
 import { z } from "zod";
 import { db } from "#/db/index.ts";
 import { image } from "#/db/schema.ts";
-import { convertSize } from "#/lib/convertSize.ts";
-import { faker } from "#/lib/faker.ts";
+import { imageServers } from "#/features/image/server.ts";
 
 const baseStorageDir =
 	process.env.NODE_ENV === "production" ? "/wwwroot/storage" : "public";
@@ -15,37 +13,15 @@ export const create = os
 	.input(
 		z.object({
 			files: z.array(z.instanceof(File)),
-			maxWidth: z.number().default(1200),
 		}),
 	)
 	.handler(async (ctx) => {
-		const { files, maxWidth } = ctx.input;
+		const { files } = ctx.input;
 		const insertValues = [];
-		const now = new Date();
-
-		const uploadPath = `${baseStorageDir}/uploads/${now.getFullYear()}/${now.getMonth() + 1}`;
-
-		if (!fs.existsSync(uploadPath)) {
-			await fs.promises.mkdir(uploadPath, { recursive: true });
-		}
-
 		for (const file of files) {
-			const fileName = `${Date.now()}-${faker.randomNumber(1000000, 9999999)}.webp`;
-			const url = `/uploads/${now.getFullYear()}/${now.getMonth() + 1}/${fileName}`;
-			const webpBuffer = await sharp(Buffer.from(await file.arrayBuffer()))
-				.resize({ width: maxWidth, withoutEnlargement: true })
-				.webp({ quality: 80 })
-				.toBuffer();
-
-			await fs.promises.writeFile(`${uploadPath}/${fileName}`, webpBuffer);
-			insertValues.push({
-				alt: "",
-				size: webpBuffer.length,
-				sizeStr: convertSize(webpBuffer.length),
-				url,
-			});
+			const data = await imageServers.create(file);
+			insertValues.push(data);
 		}
-
 		return await db.insert(image).values(insertValues).returning();
 	});
 
