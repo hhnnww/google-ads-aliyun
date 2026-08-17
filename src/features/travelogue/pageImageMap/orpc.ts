@@ -3,7 +3,7 @@ import { and, eq } from "drizzle-orm";
 import { z } from "zod";
 import { db } from "#/db/index.ts";
 import { traveloguePageImageMap } from "#/db/schema.ts";
-import { imageRemoveFn } from "#/features/image/orpc.ts";
+import { imageServers } from "#/features/image/server.ts";
 
 export const create = os
 	.input(
@@ -36,7 +36,7 @@ export const remove = os
 				),
 			)
 			.returning();
-		await imageRemoveFn(ctx.input.imageId);
+		await imageServers.removeWithDB(ctx.input.imageId);
 		return result;
 	});
 

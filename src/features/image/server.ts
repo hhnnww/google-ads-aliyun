@@ -1,3 +1,7 @@
+import { eq } from "drizzle-orm";
+import { db } from "#/db/index.ts";
+import { image } from "#/db/schema.ts";
+
 const getImageUrl = () => {
 	console.log(process.env.NODE_ENV);
 	if (process.env.NODE_ENV === "development") {
@@ -39,4 +43,12 @@ const remove = async (path: string) => {
 	return res.json();
 };
 
-export const imageServers = { create, remove };
+const removeWithDB = async (imageId: number) => {
+	const imageObj = (
+		await db.select().from(image).where(eq(image.id, imageId))
+	)[0];
+	await imageServers.remove(imageObj.path);
+	await db.delete(image).where(eq(image.id, imageId));
+};
+
+export const imageServers = { create, remove, removeWithDB };

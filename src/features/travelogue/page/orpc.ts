@@ -3,7 +3,7 @@ import { desc, eq } from "drizzle-orm";
 import { z } from "zod";
 import { db } from "#/db/index.ts";
 import { traveloguePage } from "#/db/schema.ts";
-import { imageRemoveFn } from "#/features/image/orpc.ts";
+import { imageServers } from "#/features/image/server.ts";
 import { traveloguepageselectSchema } from "#/features/travelogue/page/schema.ts";
 import { faker } from "#/lib/faker.ts";
 
@@ -42,7 +42,7 @@ const remove = os
 				.where(eq(traveloguePage.id, ctx.input.traveloguePageId))
 		)[0];
 		if (pageQuery.avatar) {
-			await imageRemoveFn(pageQuery.avatar);
+			await imageServers.removeWithDB(pageQuery.avatar);
 		}
 		return await db
 			.delete(traveloguePage)

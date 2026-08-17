@@ -3,7 +3,7 @@ import { eq } from "drizzle-orm";
 import { z } from "zod";
 import { db } from "#/db/index.ts";
 import { travelogueComment } from "#/db/schema.ts";
-import { imageRemoveFn } from "#/features/image/orpc.ts";
+import { imageServers } from "#/features/image/server.ts";
 import { travelogueCommentSelectSchema } from "#/features/travelogue/comment/schema.ts";
 import { faker } from "#/lib/faker.ts";
 
@@ -48,9 +48,11 @@ const remove = os
 				.from(travelogueComment)
 				.where(eq(travelogueComment.id, ctx.input.travelogueCommentId))
 		)[0];
-		if (commentQuery?.avatar) {
-			await imageRemoveFn(commentQuery.avatar);
+
+		if (commentQuery.avatar) {
+			await imageServers.removeWithDB(commentQuery.avatar);
 		}
+
 		return await db
 			.delete(travelogueComment)
 			.where(eq(travelogueComment.id, ctx.input.travelogueCommentId))
