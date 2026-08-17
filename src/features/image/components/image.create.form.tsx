@@ -3,17 +3,19 @@ import { useEffect, useRef } from "react";
 import { Button } from "#/components/ui/button.tsx";
 import { Spinner } from "#/components/ui/spinner.tsx";
 import { imageApi } from "#/features/image/api.ts";
+import type { ImageSelect } from "#/features/image/schema.ts";
 
 export const ImageCreateForm = (props: {
-	onSuccess: () => void;
+	onSuccess: (data: ImageSelect[]) => void;
 	onClose: () => void;
 }) => {
 	const inputRef = useRef<HTMLInputElement>(null);
+
 	const updateImageMutation = useMutation(
 		imageApi.create.mutationOptions({
-			onSuccess: () => {
+			onSuccess: (ctx) => {
 				props.onClose();
-				props.onSuccess();
+				props.onSuccess(ctx);
 			},
 		}),
 	);

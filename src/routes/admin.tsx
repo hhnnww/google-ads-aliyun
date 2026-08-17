@@ -1,4 +1,6 @@
 import { createFileRoute, Outlet } from "@tanstack/react-router";
+import { SidebarProvider } from "#/components/ui/sidebar.tsx";
+import { AdminSidebar } from "#/features/admin/components/admin.sidebar.tsx";
 
 export const Route = createFileRoute("/admin")({
 	component: RouteComponent,
@@ -6,8 +8,11 @@ export const Route = createFileRoute("/admin")({
 
 function RouteComponent() {
 	return (
-		<div className="flex flex-col gap-20 items-start container mx-auto py-20">
-			<Outlet />
-		</div>
+		<SidebarProvider>
+			<AdminSidebar />
+			<div className="flex flex-col gap-20 items-start max-w-250 mx-auto py-20 w-full">
+				<Outlet />
+			</div>
+		</SidebarProvider>
 	);
 }

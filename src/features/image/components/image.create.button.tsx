@@ -9,8 +9,11 @@ import {
 	DialogTrigger,
 } from "#/components/ui/dialog.tsx";
 import { ImageCreateForm } from "#/features/image/components/image.create.form.tsx";
+import type { ImageSelect } from "#/features/image/schema.ts";
 
-export const ImageCreateButton = (props: { onSuccess: () => void }) => {
+export const ImageCreateButton = (props: {
+	onSuccess: (data: ImageSelect[]) => void;
+}) => {
 	const [open, setOpen] = useState(false);
 	return (
 		<Dialog open={open} onOpenChange={setOpen}>

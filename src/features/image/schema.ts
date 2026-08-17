@@ -1,5 +1,11 @@
 import { sql } from "drizzle-orm";
 import { integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
+import {
+	createInsertSchema,
+	createSelectSchema,
+	createUpdateSchema,
+} from "drizzle-zod";
+import type { z } from "zod";
 
 export const image = sqliteTable("image", {
 	id: integer().primaryKey({
@@ -15,3 +21,11 @@ export const image = sqliteTable("image", {
 		.notNull()
 		.default(sql`(unixepoch())`),
 });
+
+export const imageselectschema = createSelectSchema(image);
+export const imageupdatesSchema = createUpdateSchema(image);
+export const imageinsertSchema = createInsertSchema(image);
+
+export type ImageSelect = z.infer<typeof imageselectschema>;
+export type ImageUpdate = z.infer<typeof imageupdatesSchema>;
+export type ImageInsert = z.infer<typeof imageinsertSchema>;

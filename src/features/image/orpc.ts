@@ -1,5 +1,4 @@
 import fs from "node:fs";
-import path from "node:path";
 import { type InferRouterOutputs, os } from "@orpc/server";
 import { desc, eq } from "drizzle-orm";
 import sharp from "sharp"; // 修正点 1：使用默认导入
@@ -10,9 +9,7 @@ import { convertSize } from "#/lib/convertSize.ts";
 import { faker } from "#/lib/faker.ts";
 
 const baseStorageDir =
-	process.env.NODE_ENV === "production"
-		? "/wwwroot/storage"
-		: path.join(process.cwd(), "public");
+	process.env.NODE_ENV === "production" ? "/wwwroot/storage" : "public";
 
 export const create = os
 	.input(
@@ -26,7 +23,7 @@ export const create = os
 		const insertValues = [];
 		const now = new Date();
 
-		const uploadPath = `${baseStorageDir}/${now.getFullYear()}/${now.getMonth() + 1}`;
+		const uploadPath = `${baseStorageDir}/uploads/${now.getFullYear()}/${now.getMonth() + 1}`;
 
 		if (!fs.existsSync(uploadPath)) {
 			await fs.promises.mkdir(uploadPath, { recursive: true });
@@ -69,10 +66,8 @@ export const list = os
 			.limit(pageSize);
 	});
 
-const remove = os.input(z.object({ id: z.number() })).handler(async (ctx) => {
-	const { id } = ctx.input;
-	const imageObj = await db.select().from(image).where(eq(image.id, id));
-
+export const imageRemoveFn = async (imageId: number) => {
+	const imageObj = await db.select().from(image).where(eq(image.id, imageId));
 	const imagePath = `${baseStorageDir}${imageObj[0].url}`;
 
 	try {
@@ -80,14 +75,24 @@ const remove = os.input(z.object({ id: z.number() })).handler(async (ctx) => {
 	} catch (err) {
 		console.log(err);
 	}
+	return await db.delete(image).where(eq(image.id, imageId)).returning();
+};
 
-	return await db.delete(image).where(eq(image.id, id)).returning();
+const remove = os.input(z.object({ id: z.number() })).handler(async (ctx) => {
+	const { id } = ctx.input;
+	return await imageRemoveFn(id);
+});
+
+const get = os.input(z.object({ imageId: z.number() })).handler(async (ctx) => {
+	const { imageId } = ctx.input;
+	return (await db.select().from(image).where(eq(image.id, imageId)))[0];
 });
 
 export const imageRouter = {
 	create,
 	list,
 	remove,
+	get,
 };
 
 export type ImageRouter = {
