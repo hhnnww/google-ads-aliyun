@@ -1,4 +1,3 @@
-import fs from "node:fs";
 import { type InferRouterOutputs, os } from "@orpc/server";
 import { desc, eq } from "drizzle-orm";
 import { z } from "zod";
@@ -42,21 +41,12 @@ export const list = os
 			.limit(pageSize);
 	});
 
-export const imageRemoveFn = async (imageId: number) => {
-	const imageObj = await db.select().from(image).where(eq(image.id, imageId));
-	const imagePath = `${baseStorageDir}${imageObj[0].url}`;
-
-	try {
-		await fs.promises.unlink(imagePath);
-	} catch (err) {
-		console.log(err);
-	}
-	return await db.delete(image).where(eq(image.id, imageId)).returning();
-};
-
 const remove = os.input(z.object({ id: z.number() })).handler(async (ctx) => {
 	const { id } = ctx.input;
-	return await imageRemoveFn(id);
+	const imageObj = (await db.select().from(image).where(eq(image.id, id)))[0];
+	await imageServers.remove(imageObj.path);
+	await db.delete(image).where(eq(image.id, id));
+	return true;
 });
 
 const get = os.input(z.object({ imageId: z.number() })).handler(async (ctx) => {
