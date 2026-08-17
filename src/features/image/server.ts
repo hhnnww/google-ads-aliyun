@@ -10,9 +10,21 @@ const create = async (file: File) => {
 		size: number;
 		sizeStr: string;
 		url: string;
+		path: string;
 	};
-	console.log(data);
+
 	return data;
 };
 
-export const imageServers = { create };
+const remove = async (path: string) => {
+	const formData = new FormData();
+	formData.append("path", path);
+	const res = await fetch("https://inxizang.com/image/remove", {
+		method: "POST",
+		body: formData,
+	});
+
+	return res.json();
+};
+
+export const imageServers = { create, remove };

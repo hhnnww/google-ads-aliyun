@@ -32,6 +32,7 @@ export const Route = createFileRoute("/image/upload")({
 					alt: "",
 					size: webpBuffer.length,
 					sizeStr: convertSize(webpBuffer.length),
+					path: `${uploadPath}/${fileName}`,
 					url,
 				});
 			},
