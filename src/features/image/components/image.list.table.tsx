@@ -1,4 +1,3 @@
-import { Button } from "#/components/ui/button.tsx";
 import { Card, CardContent } from "#/components/ui/card.tsx";
 import {
 	Table,
@@ -20,10 +19,8 @@ export const ImageListTable = (props: { images: ImageRouter["list"] }) => {
 						<TableRow>
 							<TableHead>ID</TableHead>
 							<TableHead>图片预览</TableHead>
-							<TableHead>图片URL</TableHead>
 							<TableHead>创建时间</TableHead>
 							<TableHead>图片大小</TableHead>
-							<TableHead>操作</TableHead>
 							<TableHead>删除</TableHead>
 						</TableRow>
 					</TableHeader>
@@ -41,12 +38,9 @@ export const ImageListTable = (props: { images: ImageRouter["list"] }) => {
 										/>
 									</div>
 								</TableCell>
-								<TableCell>{image.url}</TableCell>
 								<TableCell>{image.createdAt.toISOString()}</TableCell>
 								<TableCell>{image.sizeStr}</TableCell>
-								<TableCell>
-									<Button variant="ghost">编辑</Button>
-								</TableCell>
+
 								<TableCell>
 									<ImageRemoveButton imageId={image.id} />
 								</TableCell>

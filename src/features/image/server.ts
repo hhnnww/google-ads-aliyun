@@ -1,7 +1,17 @@
+const getImageUrl = () => {
+	console.log(process.env.NODE_ENV);
+	if (process.env.NODE_ENV === "development") {
+		return "https://inxizang.com";
+	}
+	return "http://localhost:3000";
+};
+
 const create = async (file: File) => {
 	const formData = new FormData();
 	formData.append("file", file);
-	const res = await fetch("https://inxizang.com/image/upload", {
+	const imageUrl = getImageUrl();
+	const uploadUrl = `${imageUrl}/image/upload`;
+	const res = await fetch(uploadUrl, {
 		method: "POST",
 		body: formData,
 	});
@@ -19,7 +29,9 @@ const create = async (file: File) => {
 const remove = async (path: string) => {
 	const formData = new FormData();
 	formData.append("path", path);
-	const res = await fetch("https://inxizang.com/image/remove", {
+	const imageUrl = getImageUrl();
+	const removeUrl = `${imageUrl}/image/remove`;
+	const res = await fetch(removeUrl, {
 		method: "POST",
 		body: formData,
 	});
