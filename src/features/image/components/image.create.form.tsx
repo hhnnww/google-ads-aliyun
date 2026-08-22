@@ -33,7 +33,7 @@ export const ImageCreateForm = (props: {
 				}
 			}
 			if (files.length > 0) {
-				updateImageMutation.mutate({ files, maxWidth: 1200 });
+				updateImageMutation.mutate({ files });
 			}
 		};
 		window.addEventListener("paste", handlePaste);
@@ -61,7 +61,6 @@ export const ImageCreateForm = (props: {
 					}
 					await updateImageMutation.mutateAsync({
 						files: Array.from(e.target.files),
-						maxWidth: 1200,
 					});
 				}}
 			/>

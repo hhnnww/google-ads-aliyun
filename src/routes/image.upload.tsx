@@ -53,8 +53,13 @@ export const Route = createFileRoute("/image/upload")({
 
 				const result = {
 					alt: "",
-					size: lgBuffer.length,
-					sizeStr: convertSize(lgBuffer.length),
+					smSize: smBuffer.length,
+					mdSize: mdBuffer.length,
+					lgSize: lgBuffer.length,
+					smSizeStr: convertSize(smBuffer.length),
+					mdSizeStr: convertSize(mdBuffer.length),
+					lgSizeStr: convertSize(lgBuffer.length),
+
 					smPath: `${UPLOAD_ROOT}${smRel}`,
 					smUrl: `${BASE_URL}${smRel}`,
 					mdPath: `${UPLOAD_ROOT}${mdRel}`,

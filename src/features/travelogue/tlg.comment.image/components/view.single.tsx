@@ -44,13 +44,13 @@ export const TlgCommentImageMapViewSingle = (props: {
 	return (
 		<Attachment orientation={"vertical"}>
 			<AttachmentMedia variant={"image"}>
-				<img src={imageQuery.data?.url} alt={imageQuery.data?.alt} />
+				<img src={imageQuery.data?.smUrl} alt={imageQuery.data?.alt} />
 			</AttachmentMedia>
 
 			<AttachmentContent>
 				<AttachmentTitle>{imageQuery.data?.alt || "图片附件"}</AttachmentTitle>
 				<AttachmentDescription>
-					{imageQuery.data?.sizeStr}
+					{imageQuery.data?.lgSizeStr}
 				</AttachmentDescription>
 			</AttachmentContent>
 

@@ -32,14 +32,14 @@ export const ImageListTable = (props: { images: ImageRouter["list"] }) => {
 								<TableCell>
 									<div className="aspect-square w-12 h-12">
 										<img
-											src={image.url}
+											src={image.smUrl}
 											alt={image.alt}
 											className="w-full h-full object-cover"
 										/>
 									</div>
 								</TableCell>
 								<TableCell>{image.createdAt.toISOString()}</TableCell>
-								<TableCell>{image.sizeStr}</TableCell>
+								<TableCell>{image.lgSizeStr}</TableCell>
 
 								<TableCell>
 									<ImageRemoveButton imageId={image.id} />
