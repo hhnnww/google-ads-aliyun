@@ -12,14 +12,20 @@ export const image = sqliteTable("image", {
 		autoIncrement: true,
 	}),
 
-	size: integer().notNull().default(0),
-	sizeStr: text().notNull().default(""),
 	alt: text().notNull().default(""),
 
+	smSize: integer().notNull().default(0),
+	smSizeStr: text().notNull().default(""),
 	smPath: text().notNull().default(""),
 	smUrl: text().notNull().default(""),
+
+	mdSize: integer().notNull().default(0),
+	mdSizeStr: text().notNull().default(""),
 	mdPath: text().notNull().default(""),
 	mdUrl: text().notNull().default(""),
+
+	lgSize: integer().notNull().default(0),
+	lgSizeStr: text().notNull().default(""),
 	lgPath: text().notNull().default(""),
 	lgUrl: text().notNull().default(""),
 

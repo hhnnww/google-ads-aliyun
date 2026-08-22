@@ -1,7 +1,6 @@
 import { mkdir, writeFile } from "node:fs/promises";
 import { createFileRoute } from "@tanstack/react-router";
 import sharp from "sharp";
-import type { ImageSelect } from "#/features/image/schema.ts";
 import { convertSize } from "#/lib/convertSize.ts";
 import { faker } from "#/lib/faker.ts";
 
@@ -52,8 +51,7 @@ export const Route = createFileRoute("/image/upload")({
 				await writeFile(`${uploadPath}/${lgFileName}`, lgBuffer);
 				const lgRel = `/uploads/${year}/${month}/${lgFileName}`;
 
-				const result: ImageSelect = {
-					id: 0,
+				const result = {
 					alt: "",
 					size: lgBuffer.length,
 					sizeStr: convertSize(lgBuffer.length),
@@ -63,7 +61,6 @@ export const Route = createFileRoute("/image/upload")({
 					mdUrl: `${BASE_URL}${mdRel}`,
 					lgPath: `${UPLOAD_ROOT}${lgRel}`,
 					lgUrl: `${BASE_URL}${lgRel}`,
-					createdAt: now,
 				};
 
 				return Response.json(result);
