@@ -27,6 +27,7 @@ export const AdminSidebar = () => {
 			}),
 		},
 	];
+
 	return (
 		<Sidebar>
 			<SidebarContent>

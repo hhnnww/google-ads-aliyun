@@ -8,6 +8,7 @@ import {
 	TableHeader,
 	TableRow,
 } from "#/components/ui/table.tsx";
+import { AdminImageView } from "#/features/admin/components/admin.image.view.tsx";
 import { PublicAvatar } from "#/features/public.components/public.avatar.tsx";
 import { TlgSalerEditButton } from "#/features/travelogue/tlg.saler/components/tlg.saler.edit.button.tsx";
 import { TlgSalerToggleButton } from "#/features/travelogue/tlg.saler/components/tlg.saler.toggle.button.tsx";
@@ -48,7 +49,14 @@ export const TlgSalerListTable = (props: { pageId: number }) => {
 									</TableCell>
 									<TableCell>{item.phone}</TableCell>
 									<TableCell>{item.wechat}</TableCell>
-									<TableCell>{item.wechatQrcode}</TableCell>
+									<TableCell>
+										{item.wechatQrcode && (
+											<AdminImageView
+												imageId={item.wechatQrcode}
+												className="max-w-12"
+											/>
+										)}
+									</TableCell>
 									<TableCell>
 										<TlgSalerEditButton saler={item} pageId={props.pageId} />
 									</TableCell>

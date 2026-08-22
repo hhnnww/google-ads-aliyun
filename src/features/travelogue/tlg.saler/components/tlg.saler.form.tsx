@@ -65,6 +65,10 @@ export const TlgSalerForm = (props: {
 						<form.AppField name="wechat">
 							{(field) => <field.input />}
 						</form.AppField>
+
+						<form.AppField name="wechatQrcode">
+							{(field) => <field.image />}
+						</form.AppField>
 					</div>
 				</form>
 

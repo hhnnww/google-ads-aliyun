@@ -4,8 +4,8 @@ import type { TlgPageFrontTypes } from "#/features/travelogue/front/orpc.ts";
 
 export const FrontPage = (props: { page: TlgPageFrontTypes["get"] }) => {
 	return (
-		<div className="py-12">
-			<div className="container-tlg">
+		<div className="">
+			<div className="container-tlg mt-12">
 				<PageTravelogue page={props.page} />
 			</div>
 

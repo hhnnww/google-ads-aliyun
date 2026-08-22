@@ -6,5 +6,8 @@ export const Route = createFileRoute("/admin/image/list/$pagenum")({
 });
 
 function RouteComponent() {
-	return <Image pageNum={1} />;
+	const params = Route.useParams();
+	const pageNum = Number(params.pagenum);
+
+	return <Image pageNum={pageNum} />;
 }

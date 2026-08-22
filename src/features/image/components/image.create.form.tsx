@@ -7,14 +7,14 @@ import type { ImageSelect } from "#/features/image/schema.ts";
 
 export const ImageCreateForm = (props: {
 	onSuccess: (data: ImageSelect[]) => void;
-	onClose: () => void;
+	onClose?: () => void;
 }) => {
 	const inputRef = useRef<HTMLInputElement>(null);
 
 	const updateImageMutation = useMutation(
 		imageApi.create.mutationOptions({
 			onSuccess: (ctx) => {
-				props.onClose();
+				props.onClose?.();
 				props.onSuccess(ctx);
 			},
 		}),

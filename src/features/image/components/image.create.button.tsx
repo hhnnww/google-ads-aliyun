@@ -1,3 +1,4 @@
+import { ImagePlusIcon } from "lucide-react";
 import { useState } from "react";
 import { Button } from "#/components/ui/button.tsx";
 import {
@@ -19,7 +20,10 @@ export const ImageCreateButton = (props: {
 	return (
 		<Dialog open={open} onOpenChange={setOpen}>
 			<DialogTrigger>
-				<Button>{props.label || "创建图片"}</Button>
+				<Button>
+					<ImagePlusIcon />
+					{props.label || "创建图片"}
+				</Button>
 			</DialogTrigger>
 
 			<DialogContent>
@@ -27,10 +31,7 @@ export const ImageCreateButton = (props: {
 					<DialogTitle>上传图片</DialogTitle>
 					<DialogDescription>也可以直接粘贴图片到这里上传</DialogDescription>
 				</DialogHeader>
-				<ImageCreateForm
-					onSuccess={props.onSuccess}
-					onClose={() => setOpen(false)}
-				/>
+				<ImageCreateForm onSuccess={props.onSuccess} />
 			</DialogContent>
 		</Dialog>
 	);
