@@ -12,11 +12,16 @@ export const image = sqliteTable("image", {
 		autoIncrement: true,
 	}),
 
-	url: text().notNull().default(""),
 	size: integer().notNull().default(0),
 	sizeStr: text().notNull().default(""),
 	alt: text().notNull().default(""),
-	path: text().notNull().default(""),
+
+	smPath: text().notNull().default(""),
+	smUrl: text().notNull().default(""),
+	mdPath: text().notNull().default(""),
+	mdUrl: text().notNull().default(""),
+	lgPath: text().notNull().default(""),
+	lgUrl: text().notNull().default(""),
 
 	createdAt: integer("created_at", { mode: "timestamp" })
 		.notNull()

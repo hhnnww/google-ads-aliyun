@@ -30,25 +30,21 @@ const create = async (file: File) => {
 	return data;
 };
 
-const remove = async (path: string) => {
+const remove = async (imageId: number) => {
+	const imageObj = (
+		await db.select().from(image).where(eq(image.id, imageId))
+	)[0];
+
 	const formData = new FormData();
-	formData.append("path", path);
+	formData.append("path", imageObj.path);
 	const imageUrl = getImageUrl();
 	const removeUrl = `${imageUrl}/image/remove`;
 	const res = await fetch(removeUrl, {
 		method: "POST",
 		body: formData,
 	});
-
+	await db.delete(image).where(eq(image.id, imageId));
 	return res.json();
 };
 
-const removeWithDB = async (imageId: number) => {
-	const imageObj = (
-		await db.select().from(image).where(eq(image.id, imageId))
-	)[0];
-	await imageServers.remove(imageObj.path);
-	await db.delete(image).where(eq(image.id, imageId));
-};
-
-export const imageServers = { create, remove, removeWithDB };
+export const imageServers = { create, remove };

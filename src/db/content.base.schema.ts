@@ -8,8 +8,8 @@ export const contentBase = {
 	}),
 
 	author: text().notNull().default(""),
-	avatar: integer().references(() => image.id),
-
+	avatar: integer().references(() => image.id, { onDelete: "set null" }),
+	title: text().notNull().default(""),
 	content: text().notNull().default(""),
 
 	like: integer().notNull().default(0),

@@ -13,7 +13,7 @@ export const TanstackTextarea = (props: ComponentProps<"textarea">) => {
 				<Textarea
 					value={field.state.value}
 					onChange={(e) => field.handleChange(e.target.value)}
-					className="resize-none min-h-24"
+					className="resize-none min-h-24 max-h-48"
 					{...props}
 				/>
 			</FieldContent>

@@ -5,9 +5,6 @@ import { db } from "#/db/index.ts";
 import { image } from "#/db/schema.ts";
 import { imageServers } from "#/features/image/server.ts";
 
-const baseStorageDir =
-	process.env.NODE_ENV === "production" ? "/wwwroot/storage" : "public";
-
 export const create = os
 	.input(
 		z.object({
@@ -43,9 +40,7 @@ export const list = os
 
 const remove = os.input(z.object({ id: z.number() })).handler(async (ctx) => {
 	const { id } = ctx.input;
-	const imageObj = (await db.select().from(image).where(eq(image.id, id)))[0];
-	await imageServers.remove(imageObj.path);
-	await db.delete(image).where(eq(image.id, id));
+	await imageServers.remove(id);
 	return true;
 });
 

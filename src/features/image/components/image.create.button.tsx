@@ -13,11 +13,14 @@ import type { ImageSelect } from "#/features/image/schema.ts";
 
 export const ImageCreateButton = (props: {
 	onSuccess: (data: ImageSelect[]) => void;
+	label?: string;
 }) => {
 	const [open, setOpen] = useState(false);
 	return (
 		<Dialog open={open} onOpenChange={setOpen}>
-			<DialogTrigger render={(props) => <Button {...props}>创建图片</Button>} />
+			<DialogTrigger>
+				<Button>{props.label || "创建图片"}</Button>
+			</DialogTrigger>
 
 			<DialogContent>
 				<DialogHeader>

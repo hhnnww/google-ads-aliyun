@@ -3,6 +3,7 @@ import {
 	createRootRouteWithContext,
 	HeadContent,
 	Scripts,
+	useRouterState,
 } from "@tanstack/react-router";
 import { TooltipProvider } from "#/components/ui/tooltip.tsx";
 import appCss from "../styles.css?url";
@@ -33,11 +34,24 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 		],
 	}),
 	shellComponent: RootDocument,
+	notFoundComponent: () => <>404</>,
+	errorComponent: (error) => <>{error.error.message}</>,
 });
 
 function RootDocument({ children }: { children: React.ReactNode }) {
+	let mode = "dark";
+	let lang = "en";
+	const pathname = useRouterState({
+		select: (s) => s.location.pathname,
+	});
+
+	if (pathname.startsWith("/tlg/page")) {
+		mode = "light";
+		lang = "zh-TW";
+	}
+
 	return (
-		<html lang="en" className="dark" suppressHydrationWarning>
+		<html lang={lang} className={mode} suppressHydrationWarning>
 			<head>
 				<HeadContent />
 			</head>

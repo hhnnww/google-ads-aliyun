@@ -1,3 +1,4 @@
+import { ArrowUpFromLineIcon } from "lucide-react";
 import { Button } from "#/components/ui/button.tsx";
 import { useFormContext } from "#/hooks/form-context.tsx";
 
@@ -11,6 +12,7 @@ export const TanstackSubmitButton = () => {
 					onClick={async () => await form.handleSubmit()}
 					disabled={isSubmitting}
 				>
+					<ArrowUpFromLineIcon />
 					提交
 				</Button>
 			)}

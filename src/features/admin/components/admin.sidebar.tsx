@@ -15,7 +15,7 @@ export const AdminSidebar = () => {
 		{
 			name: "游记管理",
 			link: linkOptions({
-				to: "/admin/travelogue/page/list",
+				to: "/admin/tlg/page/list",
 			}),
 		},
 

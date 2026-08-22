@@ -15,10 +15,12 @@ import { Route as ApiSplatRouteImport } from './routes/api.$'
 import { Route as ImageRemoveRouteImport } from './routes/image.remove'
 import { Route as ImageUploadRouteImport } from './routes/image.upload'
 import { Route as ApiRpcSplatRouteImport } from './routes/api.rpc.$'
+import { Route as TlgPageIdRouteImport } from './routes/tlg.page.$id'
 import { Route as AdminImageListPagenumRouteImport } from './routes/admin.image.list.$pagenum'
-import { Route as AdminTraveloguePageListRouteImport } from './routes/admin.travelogue.page.list'
-import { Route as AdminTraveloguePageEditPageidRouteImport } from './routes/admin.travelogue.page.edit.$pageid'
-import { Route as AdminTraveloguePageEditPageidMainRouteImport } from './routes/admin.travelogue.page.edit.$pageid.main'
+import { Route as AdminTlgPageListRouteImport } from './routes/admin.tlg.page.list'
+import { Route as AdminTlgPageEditIdRouteImport } from './routes/admin.tlg.page.edit.$id'
+import { Route as AdminTlgPageEditIdMainRouteImport } from './routes/admin.tlg.page.edit.$id.main'
+import { Route as AdminTlgPageEditIdSalerRouteImport } from './routes/admin.tlg.page.edit.$id.saler'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -50,28 +52,36 @@ const ApiRpcSplatRoute = ApiRpcSplatRouteImport.update({
   path: '/api/rpc/$',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TlgPageIdRoute = TlgPageIdRouteImport.update({
+  id: '/tlg/page/$id',
+  path: '/tlg/page/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminImageListPagenumRoute = AdminImageListPagenumRouteImport.update({
   id: '/image/list/$pagenum',
   path: '/image/list/$pagenum',
   getParentRoute: () => AdminRoute,
 } as any)
-const AdminTraveloguePageListRoute = AdminTraveloguePageListRouteImport.update({
-  id: '/travelogue/page/list',
-  path: '/travelogue/page/list',
+const AdminTlgPageListRoute = AdminTlgPageListRouteImport.update({
+  id: '/tlg/page/list',
+  path: '/tlg/page/list',
   getParentRoute: () => AdminRoute,
 } as any)
-const AdminTraveloguePageEditPageidRoute =
-  AdminTraveloguePageEditPageidRouteImport.update({
-    id: '/travelogue/page/edit/$pageid',
-    path: '/travelogue/page/edit/$pageid',
-    getParentRoute: () => AdminRoute,
-  } as any)
-const AdminTraveloguePageEditPageidMainRoute =
-  AdminTraveloguePageEditPageidMainRouteImport.update({
-    id: '/main',
-    path: '/main',
-    getParentRoute: () => AdminTraveloguePageEditPageidRoute,
-  } as any)
+const AdminTlgPageEditIdRoute = AdminTlgPageEditIdRouteImport.update({
+  id: '/tlg/page/edit/$id',
+  path: '/tlg/page/edit/$id',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminTlgPageEditIdMainRoute = AdminTlgPageEditIdMainRouteImport.update({
+  id: '/main',
+  path: '/main',
+  getParentRoute: () => AdminTlgPageEditIdRoute,
+} as any)
+const AdminTlgPageEditIdSalerRoute = AdminTlgPageEditIdSalerRouteImport.update({
+  id: '/saler',
+  path: '/saler',
+  getParentRoute: () => AdminTlgPageEditIdRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -80,10 +90,12 @@ export interface FileRoutesByFullPath {
   '/image/remove': typeof ImageRemoveRoute
   '/image/upload': typeof ImageUploadRoute
   '/api/rpc/$': typeof ApiRpcSplatRoute
+  '/tlg/page/$id': typeof TlgPageIdRoute
   '/admin/image/list/$pagenum': typeof AdminImageListPagenumRoute
-  '/admin/travelogue/page/list': typeof AdminTraveloguePageListRoute
-  '/admin/travelogue/page/edit/$pageid': typeof AdminTraveloguePageEditPageidRouteWithChildren
-  '/admin/travelogue/page/edit/$pageid/main': typeof AdminTraveloguePageEditPageidMainRoute
+  '/admin/tlg/page/list': typeof AdminTlgPageListRoute
+  '/admin/tlg/page/edit/$id': typeof AdminTlgPageEditIdRouteWithChildren
+  '/admin/tlg/page/edit/$id/main': typeof AdminTlgPageEditIdMainRoute
+  '/admin/tlg/page/edit/$id/saler': typeof AdminTlgPageEditIdSalerRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -92,10 +104,12 @@ export interface FileRoutesByTo {
   '/image/remove': typeof ImageRemoveRoute
   '/image/upload': typeof ImageUploadRoute
   '/api/rpc/$': typeof ApiRpcSplatRoute
+  '/tlg/page/$id': typeof TlgPageIdRoute
   '/admin/image/list/$pagenum': typeof AdminImageListPagenumRoute
-  '/admin/travelogue/page/list': typeof AdminTraveloguePageListRoute
-  '/admin/travelogue/page/edit/$pageid': typeof AdminTraveloguePageEditPageidRouteWithChildren
-  '/admin/travelogue/page/edit/$pageid/main': typeof AdminTraveloguePageEditPageidMainRoute
+  '/admin/tlg/page/list': typeof AdminTlgPageListRoute
+  '/admin/tlg/page/edit/$id': typeof AdminTlgPageEditIdRouteWithChildren
+  '/admin/tlg/page/edit/$id/main': typeof AdminTlgPageEditIdMainRoute
+  '/admin/tlg/page/edit/$id/saler': typeof AdminTlgPageEditIdSalerRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -105,10 +119,12 @@ export interface FileRoutesById {
   '/image/remove': typeof ImageRemoveRoute
   '/image/upload': typeof ImageUploadRoute
   '/api/rpc/$': typeof ApiRpcSplatRoute
+  '/tlg/page/$id': typeof TlgPageIdRoute
   '/admin/image/list/$pagenum': typeof AdminImageListPagenumRoute
-  '/admin/travelogue/page/list': typeof AdminTraveloguePageListRoute
-  '/admin/travelogue/page/edit/$pageid': typeof AdminTraveloguePageEditPageidRouteWithChildren
-  '/admin/travelogue/page/edit/$pageid/main': typeof AdminTraveloguePageEditPageidMainRoute
+  '/admin/tlg/page/list': typeof AdminTlgPageListRoute
+  '/admin/tlg/page/edit/$id': typeof AdminTlgPageEditIdRouteWithChildren
+  '/admin/tlg/page/edit/$id/main': typeof AdminTlgPageEditIdMainRoute
+  '/admin/tlg/page/edit/$id/saler': typeof AdminTlgPageEditIdSalerRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -119,10 +135,12 @@ export interface FileRouteTypes {
     | '/image/remove'
     | '/image/upload'
     | '/api/rpc/$'
+    | '/tlg/page/$id'
     | '/admin/image/list/$pagenum'
-    | '/admin/travelogue/page/list'
-    | '/admin/travelogue/page/edit/$pageid'
-    | '/admin/travelogue/page/edit/$pageid/main'
+    | '/admin/tlg/page/list'
+    | '/admin/tlg/page/edit/$id'
+    | '/admin/tlg/page/edit/$id/main'
+    | '/admin/tlg/page/edit/$id/saler'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -131,10 +149,12 @@ export interface FileRouteTypes {
     | '/image/remove'
     | '/image/upload'
     | '/api/rpc/$'
+    | '/tlg/page/$id'
     | '/admin/image/list/$pagenum'
-    | '/admin/travelogue/page/list'
-    | '/admin/travelogue/page/edit/$pageid'
-    | '/admin/travelogue/page/edit/$pageid/main'
+    | '/admin/tlg/page/list'
+    | '/admin/tlg/page/edit/$id'
+    | '/admin/tlg/page/edit/$id/main'
+    | '/admin/tlg/page/edit/$id/saler'
   id:
     | '__root__'
     | '/'
@@ -143,10 +163,12 @@ export interface FileRouteTypes {
     | '/image/remove'
     | '/image/upload'
     | '/api/rpc/$'
+    | '/tlg/page/$id'
     | '/admin/image/list/$pagenum'
-    | '/admin/travelogue/page/list'
-    | '/admin/travelogue/page/edit/$pageid'
-    | '/admin/travelogue/page/edit/$pageid/main'
+    | '/admin/tlg/page/list'
+    | '/admin/tlg/page/edit/$id'
+    | '/admin/tlg/page/edit/$id/main'
+    | '/admin/tlg/page/edit/$id/saler'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -156,6 +178,7 @@ export interface RootRouteChildren {
   ImageRemoveRoute: typeof ImageRemoveRoute
   ImageUploadRoute: typeof ImageUploadRoute
   ApiRpcSplatRoute: typeof ApiRpcSplatRoute
+  TlgPageIdRoute: typeof TlgPageIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -202,6 +225,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiRpcSplatRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/tlg/page/$id': {
+      id: '/tlg/page/$id'
+      path: '/tlg/page/$id'
+      fullPath: '/tlg/page/$id'
+      preLoaderRoute: typeof TlgPageIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin/image/list/$pagenum': {
       id: '/admin/image/list/$pagenum'
       path: '/image/list/$pagenum'
@@ -209,56 +239,60 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminImageListPagenumRouteImport
       parentRoute: typeof AdminRoute
     }
-    '/admin/travelogue/page/list': {
-      id: '/admin/travelogue/page/list'
-      path: '/travelogue/page/list'
-      fullPath: '/admin/travelogue/page/list'
-      preLoaderRoute: typeof AdminTraveloguePageListRouteImport
+    '/admin/tlg/page/list': {
+      id: '/admin/tlg/page/list'
+      path: '/tlg/page/list'
+      fullPath: '/admin/tlg/page/list'
+      preLoaderRoute: typeof AdminTlgPageListRouteImport
       parentRoute: typeof AdminRoute
     }
-    '/admin/travelogue/page/edit/$pageid': {
-      id: '/admin/travelogue/page/edit/$pageid'
-      path: '/travelogue/page/edit/$pageid'
-      fullPath: '/admin/travelogue/page/edit/$pageid'
-      preLoaderRoute: typeof AdminTraveloguePageEditPageidRouteImport
+    '/admin/tlg/page/edit/$id': {
+      id: '/admin/tlg/page/edit/$id'
+      path: '/tlg/page/edit/$id'
+      fullPath: '/admin/tlg/page/edit/$id'
+      preLoaderRoute: typeof AdminTlgPageEditIdRouteImport
       parentRoute: typeof AdminRoute
     }
-    '/admin/travelogue/page/edit/$pageid/main': {
-      id: '/admin/travelogue/page/edit/$pageid/main'
+    '/admin/tlg/page/edit/$id/main': {
+      id: '/admin/tlg/page/edit/$id/main'
       path: '/main'
-      fullPath: '/admin/travelogue/page/edit/$pageid/main'
-      preLoaderRoute: typeof AdminTraveloguePageEditPageidMainRouteImport
-      parentRoute: typeof AdminTraveloguePageEditPageidRoute
+      fullPath: '/admin/tlg/page/edit/$id/main'
+      preLoaderRoute: typeof AdminTlgPageEditIdMainRouteImport
+      parentRoute: typeof AdminTlgPageEditIdRoute
+    }
+    '/admin/tlg/page/edit/$id/saler': {
+      id: '/admin/tlg/page/edit/$id/saler'
+      path: '/saler'
+      fullPath: '/admin/tlg/page/edit/$id/saler'
+      preLoaderRoute: typeof AdminTlgPageEditIdSalerRouteImport
+      parentRoute: typeof AdminTlgPageEditIdRoute
     }
   }
 }
 
-interface AdminTraveloguePageEditPageidRouteChildren {
-  AdminTraveloguePageEditPageidMainRoute: typeof AdminTraveloguePageEditPageidMainRoute
+interface AdminTlgPageEditIdRouteChildren {
+  AdminTlgPageEditIdMainRoute: typeof AdminTlgPageEditIdMainRoute
+  AdminTlgPageEditIdSalerRoute: typeof AdminTlgPageEditIdSalerRoute
 }
 
-const AdminTraveloguePageEditPageidRouteChildren: AdminTraveloguePageEditPageidRouteChildren =
-  {
-    AdminTraveloguePageEditPageidMainRoute:
-      AdminTraveloguePageEditPageidMainRoute,
-  }
+const AdminTlgPageEditIdRouteChildren: AdminTlgPageEditIdRouteChildren = {
+  AdminTlgPageEditIdMainRoute: AdminTlgPageEditIdMainRoute,
+  AdminTlgPageEditIdSalerRoute: AdminTlgPageEditIdSalerRoute,
+}
 
-const AdminTraveloguePageEditPageidRouteWithChildren =
-  AdminTraveloguePageEditPageidRoute._addFileChildren(
-    AdminTraveloguePageEditPageidRouteChildren,
-  )
+const AdminTlgPageEditIdRouteWithChildren =
+  AdminTlgPageEditIdRoute._addFileChildren(AdminTlgPageEditIdRouteChildren)
 
 interface AdminRouteChildren {
   AdminImageListPagenumRoute: typeof AdminImageListPagenumRoute
-  AdminTraveloguePageListRoute: typeof AdminTraveloguePageListRoute
-  AdminTraveloguePageEditPageidRoute: typeof AdminTraveloguePageEditPageidRouteWithChildren
+  AdminTlgPageListRoute: typeof AdminTlgPageListRoute
+  AdminTlgPageEditIdRoute: typeof AdminTlgPageEditIdRouteWithChildren
 }
 
 const AdminRouteChildren: AdminRouteChildren = {
   AdminImageListPagenumRoute: AdminImageListPagenumRoute,
-  AdminTraveloguePageListRoute: AdminTraveloguePageListRoute,
-  AdminTraveloguePageEditPageidRoute:
-    AdminTraveloguePageEditPageidRouteWithChildren,
+  AdminTlgPageListRoute: AdminTlgPageListRoute,
+  AdminTlgPageEditIdRoute: AdminTlgPageEditIdRouteWithChildren,
 }
 
 const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
@@ -270,6 +304,7 @@ const rootRouteChildren: RootRouteChildren = {
   ImageRemoveRoute: ImageRemoveRoute,
   ImageUploadRoute: ImageUploadRoute,
   ApiRpcSplatRoute: ApiRpcSplatRoute,
+  TlgPageIdRoute: TlgPageIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

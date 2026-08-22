@@ -1,13 +1,17 @@
 import { imageRouter } from "#/features/image/orpc.ts";
-import { travelogueCommentRoute } from "#/features/travelogue/comment/orpc.ts";
-import { travelogueCommentImageMapRoute } from "#/features/travelogue/commentImageMap/orpc.ts";
-import { traveloguePageRoute } from "#/features/travelogue/page/orpc.ts";
-import { traveloguePageImageMapRoute } from "#/features/travelogue/pageImageMap/orpc.ts";
+import { frontRouter } from "#/features/travelogue/front/orpc.ts";
+import { tlgCommentRouter } from "#/features/travelogue/tlg.comment/orpc.ts";
+import { tlgCommentImageMapRouter } from "#/features/travelogue/tlg.comment.image/orpc.ts";
+import { tlgPageRouter } from "#/features/travelogue/tlg.page/orpc.ts";
+import { tlgPageImageMapRouter } from "#/features/travelogue/tlg.page.image.map/orpc.ts";
+import { tlgSalerRouter } from "#/features/travelogue/tlg.saler/orpc.ts";
 
 export default {
 	imageRouter,
-	traveloguePageRoute,
-	travelogueCommentRoute,
-	traveloguePageImageMapRoute,
-	travelogueCommentImageMapRoute,
+	frontRouter,
+	tlgCommentRouter,
+	tlgCommentImageMapRouter,
+	tlgPageRouter,
+	tlgPageImageMapRouter,
+	tlgSalerRouter,
 };
