@@ -1,6 +1,7 @@
 import { eq } from "drizzle-orm";
 import { db } from "#/db/index.ts";
 import { image } from "#/db/schema.ts";
+import type { ImageSelect } from "#/features/image/schema.ts";
 
 const getImageUrl = () => {
 	console.log(process.env.NODE_ENV);
@@ -10,7 +11,7 @@ const getImageUrl = () => {
 	return "http://localhost:3000";
 };
 
-const create = async (file: File) => {
+const create = async (file: File): Promise<ImageSelect> => {
 	const formData = new FormData();
 	formData.append("file", file);
 	const imageUrl = getImageUrl();
@@ -19,13 +20,7 @@ const create = async (file: File) => {
 		method: "POST",
 		body: formData,
 	});
-	const data = (await res.json()) as {
-		alt: string;
-		size: number;
-		sizeStr: string;
-		url: string;
-		path: string;
-	};
+	const data = await res.json();
 
 	return data;
 };
@@ -36,7 +31,9 @@ const remove = async (imageId: number) => {
 	)[0];
 
 	const formData = new FormData();
-	formData.append("path", imageObj.path);
+	formData.append("smPath", imageObj.smPath);
+	formData.append("mdPath", imageObj.mdPath);
+	formData.append("lgPath", imageObj.lgPath);
 	const imageUrl = getImageUrl();
 	const removeUrl = `${imageUrl}/image/remove`;
 	const res = await fetch(removeUrl, {

@@ -6,8 +6,16 @@ export const Route = createFileRoute("/image/remove")({
 		handlers: {
 			POST: async (req) => {
 				const formData = await req.request.formData();
-				const path = formData.get("path") as string;
-				await unlink(path);
+
+				const smPath = formData.get("smPath") as string;
+				await unlink(smPath);
+
+				const mdPath = formData.get("mdPath") as string;
+				await unlink(mdPath);
+
+				const lgPath = formData.get("lgPath") as string;
+				await unlink(lgPath);
+
 				return Response.json({ message: "success" });
 			},
 		},
