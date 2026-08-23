@@ -1,10 +1,10 @@
 import { relations } from "drizzle-orm";
-
 import { image } from "#/features/image/schema";
 import { tlgComment } from "#/features/travelogue/tlg.comment/schema";
 import { tlgCommentImageMap } from "#/features/travelogue/tlg.comment.image/schema";
 import { tlgPage } from "#/features/travelogue/tlg.page/schema";
 import { tlgPageImageMap } from "#/features/travelogue/tlg.page.image.map/schema";
+import { tlgSaler } from "#/features/travelogue/tlg.saler/schema";
 
 /**
  * tlgPage
@@ -81,3 +81,19 @@ export const tlgCommentImageMapRelations = relations(
 		}),
 	}),
 );
+
+/**
+ * saler avatar
+ * saler wechatQrcode
+ */
+export const tlgSalerRelations = relations(tlgSaler, ({ one }) => ({
+	avatarObj: one(image, {
+		fields: [tlgSaler.avatar],
+		references: [image.id],
+	}),
+
+	wechatQrcodeObj: one(image, {
+		fields: [tlgSaler.wechatQrcode],
+		references: [image.id],
+	}),
+}));

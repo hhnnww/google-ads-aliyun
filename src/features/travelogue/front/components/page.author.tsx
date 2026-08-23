@@ -9,13 +9,13 @@ export const PageAuthor = (props: {
 }) => {
 	return (
 		<div className="flex items-center gap-4">
-			<Avatar size="lg">
-				<AvatarImage src={props.avatarObj?.smUrl || ""} />
+			<Avatar size="default">
+				<AvatarImage src={props.avatarObj?.smUrl} />
 			</Avatar>
 
 			<div className="">
-				<div className="text-sm font-bold">{props.authorName}</div>
-				<div className="text-sm">發表於 {convertDate(props.dayAgo)}</div>
+				<div className="font-bold">{props.authorName}</div>
+				<div className="text-xs">發表於 {convertDate(props.dayAgo)}</div>
 			</div>
 		</div>
 	);

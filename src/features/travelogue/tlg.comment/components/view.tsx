@@ -27,12 +27,14 @@ export const TlgCommentView = (props: {
 			footer={
 				<div className="flex flex-row gap-2">
 					<Dialog open={open} onOpenChange={setOpen}>
-						<DialogTrigger>
-							<Button>
-								<SquarePen />
-								编辑
-							</Button>
-						</DialogTrigger>
+						<DialogTrigger
+							render={(dialogProps) => (
+								<Button {...dialogProps}>
+									<SquarePen />
+									编辑
+								</Button>
+							)}
+						/>
 
 						<TlgCommentForm
 							commentSelect={props.commentSelect}

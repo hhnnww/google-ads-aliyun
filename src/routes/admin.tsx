@@ -10,7 +10,7 @@ function RouteComponent() {
 	return (
 		<SidebarProvider>
 			<AdminSidebar />
-			<div className="flex flex-col gap-20 items-start max-w-250 mx-auto py-20 w-full">
+			<div className="flex flex-col gap-20 items-start max-w-250 mx-auto py-20 w-full px-6">
 				<Outlet />
 			</div>
 		</SidebarProvider>

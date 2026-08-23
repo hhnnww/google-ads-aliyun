@@ -6,15 +6,16 @@ import type { TlgPageFrontTypes } from "#/features/travelogue/front/orpc.ts";
 
 export const PageCommentSingle = (props: {
 	comment: TlgPageFrontTypes["get"]["page"]["comments"][0];
+	saler: TlgPageFrontTypes["get"]["activeSaler"];
 }) => {
 	return (
-		<div className="flex flex-col gap-6 bg-white p-12 rounded-md">
+		<div className="flex flex-col gap-6 bg-white p-6 lg:p-12 rounded-md border border-[#f1f1f1]">
 			<PageAuthor
 				avatarObj={props.comment.avatarObj}
 				authorName={props.comment.author}
 				dayAgo={props.comment.dayAgo}
 			/>
-			<PageContent content={props.comment.content} />
+			<PageContent content={props.comment.content} saler={props.saler} />
 			<TlgPageImages
 				images={props.comment.images.map((item) => item.imageObj)}
 			/>

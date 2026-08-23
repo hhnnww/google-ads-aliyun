@@ -10,8 +10,10 @@ export const AdminImageView = (props: {
 	);
 
 	return (
-		<div className={props.className}>
-			<img src={imageQuery.data?.smUrl} alt="" className="rounded-md" />
-		</div>
+		imageQuery.data?.smUrl && (
+			<div className={props.className}>
+				<img src={imageQuery.data?.smUrl} alt="" className="rounded-md" />
+			</div>
+		)
 	);
 };

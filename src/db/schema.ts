@@ -5,6 +5,7 @@ export {
 	tlgCommentRelations,
 	tlgPageImageMapRelations,
 	tlgPageRelations,
+	tlgSalerRelations,
 } from "#/features/travelogue/front/schema";
 export { tlgComment } from "#/features/travelogue/tlg.comment/schema";
 export { tlgCommentImageMap } from "#/features/travelogue/tlg.comment.image/schema";

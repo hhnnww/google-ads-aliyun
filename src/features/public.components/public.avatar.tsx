@@ -7,6 +7,10 @@ export const PublicAvatar = (props: { avatarId: number }) => {
 		orpc.imageRouter.get.queryOptions({ input: { imageId: props.avatarId } }),
 	);
 
+	if (!avatarQuery.data?.smUrl) {
+		return null;
+	}
+
 	return (
 		<Avatar size="lg">
 			<AvatarImage src={avatarQuery.data?.smUrl} />

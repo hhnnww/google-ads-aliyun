@@ -23,6 +23,10 @@ const get = async (pageId: number) => {
 
 	const salerResult = await db.query.tlgSaler.findMany({
 		where: and(eq(tlgSaler.pageId, pageId), eq(tlgSaler.state, true)),
+		with: {
+			wechatQrcodeObj: true,
+			avatarObj: true,
+		},
 	});
 
 	// 获取当前时间的小时，用这个数字除以salerReslult,得到应该显示在前台的saler
