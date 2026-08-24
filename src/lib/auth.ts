@@ -12,6 +12,6 @@ export const auth = betterAuth({
 		provider: "sqlite",
 	}),
 	plugins: [tanstackStartCookies(), username()],
-	baseURL: "http://localhost:3000",
+	trustedOrigins: ["http://localhost:3000", "https://inxizang.com/"],
 	secret: "36155fbcc9511a7ccb33a28f7d19d694a640845dcb5723d6a84278819e73c319",
 });
