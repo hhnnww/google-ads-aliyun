@@ -44,10 +44,10 @@ export const TlgPageSaler = (props: {
 						/>
 					</div>
 					<DialogTitle className="font-bold text-xl text-[#92640C]">
-						聯繫金牌顧問{props.saler.name}
+						金牌顧問 {props.saler.name}
 					</DialogTitle>
 					<DialogDescription>
-						您可以通過以下方系，聯繫我們的金牌銷售顧問{props.saler.name}。
+						您可以通過以下方系，聯繫我們的金牌銷售顧問 {props.saler.name}。
 					</DialogDescription>
 				</DialogHeader>
 

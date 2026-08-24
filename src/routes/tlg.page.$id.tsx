@@ -13,6 +13,14 @@ export const Route = createFileRoute("/tlg/page/$id")({
 			}),
 		);
 	},
+
+	head: (ctx) => ({
+		meta: [
+			{
+				title: `${ctx.loaderData?.page?.title} - 西藏域龍旅行社` || "",
+			},
+		],
+	}),
 });
 
 function RouteComponent() {
