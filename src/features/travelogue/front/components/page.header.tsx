@@ -1,10 +1,4 @@
-import {
-	BedIcon,
-	MapIcon,
-	MenuIcon,
-	PhoneIcon,
-	TvMinimalIcon,
-} from "lucide-react";
+import { BedIcon, MapIcon, PhoneIcon, TvMinimalIcon } from "lucide-react";
 import { Button } from "#/components/ui/button.tsx";
 import { cn } from "#/lib/utils.ts";
 
@@ -28,11 +22,11 @@ export const TlgPageHeader = () => {
 		</>,
 	];
 	return (
-		<div className="border border-b">
+		<div className="">
 			<div className="container-tlg">
-				<div className="py-4 lg:py-7 items-center flex flex-row justify-between">
+				<div className="py-8 lg:py-12 items-center flex flex-col gap-10 justify-between">
 					<div className="text-xl font-bold">
-						<img src="/SVG/logo.svg" alt="" className="w-50 lg:w-60" />
+						<img src="/SVG/logo.svg" alt="" className="w-70 lg:w-120" />
 					</div>
 					<div className="hidden lg:flex flex-row gap-1">
 						{menus.map((menu, index) => (
@@ -49,12 +43,6 @@ export const TlgPageHeader = () => {
 								{menu}
 							</Button>
 						))}
-					</div>
-
-					<div className="lg:hidden">
-						<Button variant={"ghost"} size="icon-lg">
-							<MenuIcon />
-						</Button>
 					</div>
 				</div>
 			</div>

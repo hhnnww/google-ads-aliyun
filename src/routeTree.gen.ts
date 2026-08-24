@@ -11,9 +11,12 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminRouteImport } from './routes/admin'
+import { Route as SignInRouteImport } from './routes/sign-in'
+import { Route as SignOutRouteImport } from './routes/sign-out'
 import { Route as ApiSplatRouteImport } from './routes/api.$'
 import { Route as ImageRemoveRouteImport } from './routes/image.remove'
 import { Route as ImageUploadRouteImport } from './routes/image.upload'
+import { Route as ApiAuthSplatRouteImport } from './routes/api.auth.$'
 import { Route as ApiRpcSplatRouteImport } from './routes/api.rpc.$'
 import { Route as TlgPageIdRouteImport } from './routes/tlg.page.$id'
 import { Route as AdminImageListPagenumRouteImport } from './routes/admin.image.list.$pagenum'
@@ -32,6 +35,16 @@ const AdminRoute = AdminRouteImport.update({
   path: '/admin',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SignInRoute = SignInRouteImport.update({
+  id: '/sign-in',
+  path: '/sign-in',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SignOutRoute = SignOutRouteImport.update({
+  id: '/sign-out',
+  path: '/sign-out',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiSplatRoute = ApiSplatRouteImport.update({
   id: '/api/$',
   path: '/api/$',
@@ -45,6 +58,11 @@ const ImageRemoveRoute = ImageRemoveRouteImport.update({
 const ImageUploadRoute = ImageUploadRouteImport.update({
   id: '/image/upload',
   path: '/image/upload',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
+  id: '/api/auth/$',
+  path: '/api/auth/$',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiRpcSplatRoute = ApiRpcSplatRouteImport.update({
@@ -86,9 +104,12 @@ const AdminTlgPageEditIdSalerRoute = AdminTlgPageEditIdSalerRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/admin': typeof AdminRouteWithChildren
+  '/sign-in': typeof SignInRoute
+  '/sign-out': typeof SignOutRoute
   '/api/$': typeof ApiSplatRoute
   '/image/remove': typeof ImageRemoveRoute
   '/image/upload': typeof ImageUploadRoute
+  '/api/auth/$': typeof ApiAuthSplatRoute
   '/api/rpc/$': typeof ApiRpcSplatRoute
   '/tlg/page/$id': typeof TlgPageIdRoute
   '/admin/image/list/$pagenum': typeof AdminImageListPagenumRoute
@@ -100,9 +121,12 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/admin': typeof AdminRouteWithChildren
+  '/sign-in': typeof SignInRoute
+  '/sign-out': typeof SignOutRoute
   '/api/$': typeof ApiSplatRoute
   '/image/remove': typeof ImageRemoveRoute
   '/image/upload': typeof ImageUploadRoute
+  '/api/auth/$': typeof ApiAuthSplatRoute
   '/api/rpc/$': typeof ApiRpcSplatRoute
   '/tlg/page/$id': typeof TlgPageIdRoute
   '/admin/image/list/$pagenum': typeof AdminImageListPagenumRoute
@@ -115,9 +139,12 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/admin': typeof AdminRouteWithChildren
+  '/sign-in': typeof SignInRoute
+  '/sign-out': typeof SignOutRoute
   '/api/$': typeof ApiSplatRoute
   '/image/remove': typeof ImageRemoveRoute
   '/image/upload': typeof ImageUploadRoute
+  '/api/auth/$': typeof ApiAuthSplatRoute
   '/api/rpc/$': typeof ApiRpcSplatRoute
   '/tlg/page/$id': typeof TlgPageIdRoute
   '/admin/image/list/$pagenum': typeof AdminImageListPagenumRoute
@@ -131,9 +158,12 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/admin'
+    | '/sign-in'
+    | '/sign-out'
     | '/api/$'
     | '/image/remove'
     | '/image/upload'
+    | '/api/auth/$'
     | '/api/rpc/$'
     | '/tlg/page/$id'
     | '/admin/image/list/$pagenum'
@@ -145,9 +175,12 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/admin'
+    | '/sign-in'
+    | '/sign-out'
     | '/api/$'
     | '/image/remove'
     | '/image/upload'
+    | '/api/auth/$'
     | '/api/rpc/$'
     | '/tlg/page/$id'
     | '/admin/image/list/$pagenum'
@@ -159,9 +192,12 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/admin'
+    | '/sign-in'
+    | '/sign-out'
     | '/api/$'
     | '/image/remove'
     | '/image/upload'
+    | '/api/auth/$'
     | '/api/rpc/$'
     | '/tlg/page/$id'
     | '/admin/image/list/$pagenum'
@@ -174,9 +210,12 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AdminRoute: typeof AdminRouteWithChildren
+  SignInRoute: typeof SignInRoute
+  SignOutRoute: typeof SignOutRoute
   ApiSplatRoute: typeof ApiSplatRoute
   ImageRemoveRoute: typeof ImageRemoveRoute
   ImageUploadRoute: typeof ImageUploadRoute
+  ApiAuthSplatRoute: typeof ApiAuthSplatRoute
   ApiRpcSplatRoute: typeof ApiRpcSplatRoute
   TlgPageIdRoute: typeof TlgPageIdRoute
 }
@@ -195,6 +234,20 @@ declare module '@tanstack/react-router' {
       path: '/admin'
       fullPath: '/admin'
       preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sign-in': {
+      id: '/sign-in'
+      path: '/sign-in'
+      fullPath: '/sign-in'
+      preLoaderRoute: typeof SignInRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sign-out': {
+      id: '/sign-out'
+      path: '/sign-out'
+      fullPath: '/sign-out'
+      preLoaderRoute: typeof SignOutRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/$': {
@@ -216,6 +269,13 @@ declare module '@tanstack/react-router' {
       path: '/image/upload'
       fullPath: '/image/upload'
       preLoaderRoute: typeof ImageUploadRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/auth/$': {
+      id: '/api/auth/$'
+      path: '/api/auth/$'
+      fullPath: '/api/auth/$'
+      preLoaderRoute: typeof ApiAuthSplatRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/rpc/$': {
@@ -300,9 +360,12 @@ const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdminRoute: AdminRouteWithChildren,
+  SignInRoute: SignInRoute,
+  SignOutRoute: SignOutRoute,
   ApiSplatRoute: ApiSplatRoute,
   ImageRemoveRoute: ImageRemoveRoute,
   ImageUploadRoute: ImageUploadRoute,
+  ApiAuthSplatRoute: ApiAuthSplatRoute,
   ApiRpcSplatRoute: ApiRpcSplatRoute,
   TlgPageIdRoute: TlgPageIdRoute,
 }

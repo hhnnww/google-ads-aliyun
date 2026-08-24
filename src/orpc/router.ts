@@ -1,3 +1,4 @@
+import { authRoute } from "#/features/auth/orpc.ts";
 import { imageRouter } from "#/features/image/orpc.ts";
 import { frontRouter } from "#/features/travelogue/front/orpc.ts";
 import { tlgCommentRouter } from "#/features/travelogue/tlg.comment/orpc.ts";
@@ -14,4 +15,5 @@ export default {
 	tlgPageRouter,
 	tlgPageImageMapRouter,
 	tlgSalerRouter,
+	authRoute,
 };

@@ -1,3 +1,12 @@
+export {
+	account,
+	accountRelations,
+	session,
+	sessionRelations,
+	user,
+	userRelations,
+	verification,
+} from "#/features/auth/schema";
 export { image } from "#/features/image/schema";
 export {
 	imageRelations,
