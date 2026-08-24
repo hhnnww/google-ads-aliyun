@@ -24,7 +24,7 @@ export const TlgPageHeader = () => {
 	return (
 		<div className="">
 			<div className="container-tlg">
-				<div className="py-8 lg:py-12 items-start flex flex-col gap-12 justify-between">
+				<div className="py-8 lg:py-12 lg:pt-26 items-start lg:items-center flex flex-col gap-12 justify-between">
 					<div className="text-xl font-bold">
 						<img
 							src="/SVG/logo.svg?sta=12"
