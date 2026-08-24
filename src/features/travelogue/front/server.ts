@@ -41,6 +41,7 @@ const get = async (pageId: number) => {
 	return {
 		page: tlgPageResult,
 		activeSaler,
+		salers: salerResult,
 	};
 };
 
