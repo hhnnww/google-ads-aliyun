@@ -25,6 +25,7 @@ const ImageSingle = (props: { image: ImageSelect }) => {
 					src={props.image.smUrl}
 					alt={props.image.alt}
 					className="w-full h-full object-cover object-center rounded-sm"
+					loading="lazy"
 				/>
 			</DialogTrigger>
 

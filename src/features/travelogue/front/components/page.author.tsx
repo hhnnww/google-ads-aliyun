@@ -10,7 +10,7 @@ export const PageAuthor = (props: {
 	return (
 		<div className="flex items-center gap-4">
 			<Avatar size="default">
-				<AvatarImage src={props.avatarObj?.smUrl} />
+				<AvatarImage src={props.avatarObj?.smUrl} loading="lazy" />
 			</Avatar>
 
 			<div className="">
