@@ -22,7 +22,9 @@ export const TlgPageSaler = (props: {
 						className="inline-flex flex-row gap-1 items-baseline cursor-pointer break-all wrap-break-word focus-visible:outline-none"
 						{...triggerProps}
 					>
-						<span className="text-primary font-bold">{props.saler.name}</span>
+						<span className="font-bold text-(--front-primary)">
+							{props.saler.name}
+						</span>
 						<span className="text-xs text-[#999999]">
 							(點擊聯繫{props.saler.name})
 						</span>
