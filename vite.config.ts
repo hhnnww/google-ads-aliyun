@@ -13,7 +13,14 @@ const config = defineConfig({
 		devtools(),
 		nitro({ rollupConfig: { external: [/^@sentry\//] } }),
 		tailwindcss(),
-		tanstackStart(),
+		tanstackStart({
+			prerender: {
+				enabled: true,
+				filter: (path) => path.path.startsWith("/tlg"),
+			},
+
+			pages: [{ path: "/tlg/page/4", prerender: { enabled: true } }],
+		}),
 		viteReact(),
 	],
 });
