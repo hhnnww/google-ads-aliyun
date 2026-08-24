@@ -24,7 +24,7 @@ export const TlgPageHeader = () => {
 	return (
 		<div className="">
 			<div className="container-tlg">
-				<div className="py-8 lg:py-12 lg:pt-26 items-start lg:items-center flex flex-col gap-12 justify-between">
+				<div className="py-8 pt-16 lg:py-12 lg:pt-28 items-center flex flex-col gap-3 lg:gap-6 justify-between">
 					<div className="text-xl font-bold">
 						<img
 							src="/SVG/logo.svg?sta=12"
@@ -36,13 +36,12 @@ export const TlgPageHeader = () => {
 						{menus.map((menu, index) => (
 							<Button
 								key={index.toString()}
-								variant={index === 0 ? "default" : "ghost"}
+								variant={"ghost"}
 								className={cn(
 									"font-bold",
 									"text-(--front-primary) font-serif hover:text-(--front-primary)",
 									{
-										"font-bold bg-(--front-primary) hover:bg-(--front-primary) text-white hover:text-white":
-											index === 0,
+										"font-bold": index === 0,
 									},
 								)}
 							>

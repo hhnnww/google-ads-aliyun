@@ -8,7 +8,7 @@ export const PageTravelogue = (props: { page: TlgPageFrontTypes["get"] }) => {
 	const activeSalerName = props.page.activeSaler.name;
 	return (
 		<div className="flex flex-col gap-6">
-			<h2 className="text-2xl lg:text-3xl font-bold sm:leading-normal lg:leading-relaxed">
+			<h2 className="text-xl lg:text-2xl font-bold sm:leading-normal lg:leading-relaxed">
 				{props.page.page?.title.replaceAll("$saler", activeSalerName)}
 			</h2>
 			<PageAuthor
