@@ -67,6 +67,7 @@ export const TlgPageSaler = (props: {
 						content={props.saler.wechat}
 						buttonLabel="打開微信"
 						link="weixin://"
+						description={`您可以複製微信號，然後去微信添加${props.saler.name}為好友。`}
 					/>
 
 					<TlgPageSalerItem
@@ -74,6 +75,7 @@ export const TlgPageSaler = (props: {
 						content={props.saler.phone}
 						buttonLabel="拨打手機號"
 						link={`tel:${props.saler.phone}`}
+						description={`您可以點擊下方按鈕，直接給${props.saler.name}撥打電話。`}
 					/>
 
 					<TlgPageSalerWechatQrcode saler={props.saler} />

@@ -8,12 +8,14 @@ export const TlgPageSalerItem = (props: {
 	content: string;
 	buttonLabel: string;
 	link: string;
+	description: string;
 }) => {
 	const [copyStatus, setCopyStatus] = useState(false);
 
 	return (
 		<div className="flex flex-col gap-2">
 			<div className="font-bold">{props.title}</div>
+			<div className="text-xs">{props.description}</div>
 			<div className="flex flex-row gap-2">
 				<Input value={props.content} />
 				<Button
