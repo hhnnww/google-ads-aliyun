@@ -17,6 +17,7 @@ export const TlgPageSaler = (props: {
 	return (
 		<Dialog>
 			<DialogTrigger
+				nativeButton={false}
 				render={(triggerProps) => (
 					<span
 						className="inline-flex flex-row gap-1 items-baseline cursor-pointer break-all wrap-break-word focus-visible:outline-none"
