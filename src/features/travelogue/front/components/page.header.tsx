@@ -30,18 +30,21 @@ export const TlgPageHeader = () => {
 	return (
 		<div className="border border-b">
 			<div className="container-tlg">
-				<div className="py-7 flex flex-row justify-between">
+				<div className="py-4 lg:py-7 items-center flex flex-row justify-between">
 					<div className="text-xl font-bold">
-						<img src="/SVG/logo.svg" alt="" className="w-70" />
+						<img src="/SVG/logo.svg" alt="" className="w-50 lg:w-60" />
 					</div>
 					<div className="hidden lg:flex flex-row gap-1">
 						{menus.map((menu, index) => (
 							<Button
 								key={index.toString()}
 								variant={index === 0 ? "default" : "ghost"}
-								className={cn({
-									"font-bold": index === 0,
-								})}
+								className={cn(
+									{
+										"font-bold": index === 0,
+									},
+									"hover:font-bold",
+								)}
 							>
 								{menu}
 							</Button>

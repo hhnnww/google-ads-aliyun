@@ -19,11 +19,13 @@ export const TlgPageSaler = (props: {
 			<DialogTrigger
 				render={(triggerProps) => (
 					<span
-						className="inline-flex flex-row gap-1 items-end cursor-pointer"
+						className="inline-flex flex-row gap-1 items-baseline cursor-pointer break-all wrap-break-word focus-visible:outline-none"
 						{...triggerProps}
 					>
-						<div className="text-primary font-bold">{props.saler.name}</div>
-						<div className="text-sm">(點擊聯繫{props.saler.name})</div>
+						<span className="text-primary font-bold">{props.saler.name}</span>
+						<span className="text-xs text-[#999999]">
+							(點擊聯繫{props.saler.name})
+						</span>
 					</span>
 				)}
 			></DialogTrigger>
@@ -56,7 +58,7 @@ export const TlgPageSaler = (props: {
 					</DialogDescription>
 				</DialogHeader>
 
-				<div className="lg:p-8 flex flex-col gap-4 lg:gap-8">
+				<div className="p-4 lg:p-8 flex flex-col gap-12">
 					<TlgPageSalerItem
 						title="微信號"
 						content={props.saler.wechat}
