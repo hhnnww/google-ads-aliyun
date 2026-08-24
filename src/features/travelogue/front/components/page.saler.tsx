@@ -1,3 +1,4 @@
+import { Avatar, AvatarImage } from "#/components/ui/avatar.tsx";
 import {
 	Dialog,
 	DialogContent,
@@ -23,9 +24,27 @@ export const TlgPageSaler = (props: {
 			</DialogTrigger>
 
 			<DialogContent className="sm:max-w-xl">
-				<DialogHeader>
-					<DialogTitle className="font-bold">
-						聯繫顧問{props.saler.name}
+				<DialogHeader className="flex flex-col items-center justify-center pt-4">
+					<div className="flex flex-row items-end">
+						<img
+							src="https://inxizang.com/uploads/2026/8/1787542530057-4882053-lg.webp"
+							alt=""
+							className="h-18"
+						/>
+						<div className="pb-3">
+							<Avatar size="lg" className="data-[size=lg]:size-16">
+								<AvatarImage src={props.saler.avatarObj?.mdUrl} />
+							</Avatar>
+						</div>
+
+						<img
+							src="https://inxizang.com/uploads/2026/8/1787542621479-9140405-lg.webp"
+							alt=""
+							className="h-18"
+						/>
+					</div>
+					<DialogTitle className="font-bold text-xl">
+						聯繫金牌顧問{props.saler.name}
 					</DialogTitle>
 					<DialogDescription>
 						您可以通過以下方系，聯繫我們的金牌銷售顧問{props.saler.name}。

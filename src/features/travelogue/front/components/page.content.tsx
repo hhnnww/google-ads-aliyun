@@ -6,8 +6,8 @@ export const PageContent = (props: {
 	content: string;
 	saler: TlgPageFrontTypes["get"]["activeSaler"];
 }) => {
-	const result = reactStringReplace(props.content, /\$saler/g, (_, index) => (
-		<TlgPageSaler saler={props.saler} key={index.toString()} />
-	));
+	const result = reactStringReplace(props.content, /(\$saler)/g, (_, index) => {
+		return <TlgPageSaler saler={props.saler} key={index.toString()} />;
+	});
 	return <div className="whitespace-pre-line">{result}</div>;
 };
