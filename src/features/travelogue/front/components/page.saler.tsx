@@ -16,12 +16,17 @@ export const TlgPageSaler = (props: {
 }) => {
 	return (
 		<Dialog>
-			<DialogTrigger>
-				<div className="flex flex-row gap-1 items-end">
-					<div className="text-primary font-bold">{props.saler.name}</div>
-					<div className="text-sm">(點擊聯繫{props.saler.name})</div>
-				</div>
-			</DialogTrigger>
+			<DialogTrigger
+				render={(triggerProps) => (
+					<span
+						className="inline-flex flex-row gap-1 items-end cursor-pointer"
+						{...triggerProps}
+					>
+						<div className="text-primary font-bold">{props.saler.name}</div>
+						<div className="text-sm">(點擊聯繫{props.saler.name})</div>
+					</span>
+				)}
+			></DialogTrigger>
 
 			<DialogContent className="sm:max-w-xl">
 				<DialogHeader className="flex flex-col items-center justify-center pt-4">
