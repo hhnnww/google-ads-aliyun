@@ -22,7 +22,7 @@ export const TlgPageSaler = (props: {
 				</div>
 			</DialogTrigger>
 
-			<DialogContent className="sm:max-w-2xl">
+			<DialogContent className="sm:max-w-xl">
 				<DialogHeader>
 					<DialogTitle className="font-bold">
 						聯繫顧問{props.saler.name}
