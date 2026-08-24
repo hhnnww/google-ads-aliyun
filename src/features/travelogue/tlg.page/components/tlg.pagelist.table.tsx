@@ -12,7 +12,6 @@ import {
 	TableRow,
 } from "#/components/ui/table.tsx";
 import { TlgPageEditButton } from "#/features/travelogue/tlg.page/components/tlg.page.edit.button.tsx";
-import { TlgPageRemoveButton } from "#/features/travelogue/tlg.page/components/tlg.pageremove.button.tsx";
 import { orpc } from "#/orpc/client.ts";
 
 export const TlgPageListTable = () => {
@@ -26,7 +25,6 @@ export const TlgPageListTable = () => {
 							<TableHead>ID</TableHead>
 							<TableHead className="w-full">Title</TableHead>
 							<TableHead>操作</TableHead>
-							<TableHead>删除</TableHead>
 							<TableHead>预览</TableHead>
 						</TableRow>
 					</TableHeader>
@@ -38,9 +36,6 @@ export const TlgPageListTable = () => {
 								<TableCell>{item.title || "无标题"}</TableCell>
 								<TableCell>
 									<TlgPageEditButton pageId={item.id} />
-								</TableCell>
-								<TableCell>
-									<TlgPageRemoveButton pageId={item.id} />
 								</TableCell>
 
 								<TableCell>

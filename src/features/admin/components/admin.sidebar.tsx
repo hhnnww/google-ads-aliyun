@@ -1,7 +1,9 @@
 import { Link, linkOptions } from "@tanstack/react-router";
+import { ImageIcon, LogOutIcon, PackageIcon } from "lucide-react";
 import {
 	Sidebar,
 	SidebarContent,
+	SidebarFooter,
 	SidebarGroup,
 	SidebarGroupContent,
 	SidebarGroupLabel,
@@ -13,14 +15,24 @@ import {
 export const AdminSidebar = () => {
 	const menus = [
 		{
-			name: "游记管理",
+			name: (
+				<>
+					<PackageIcon />
+					游记管理
+				</>
+			),
 			link: linkOptions({
 				to: "/admin/tlg/page/list",
 			}),
 		},
 
 		{
-			name: "图片管理",
+			name: (
+				<>
+					<ImageIcon />
+					图片管理
+				</>
+			),
 			link: linkOptions({
 				to: "/admin/image/list/$pagenum",
 				params: { pagenum: "1" },
@@ -32,11 +44,11 @@ export const AdminSidebar = () => {
 		<Sidebar>
 			<SidebarContent>
 				<SidebarGroup>
-					<SidebarGroupLabel>后台</SidebarGroupLabel>
+					<SidebarGroupLabel>管理后台</SidebarGroupLabel>
 					<SidebarGroupContent>
 						<SidebarMenu>
-							{menus.map((menu) => (
-								<SidebarMenuItem key={menu.name}>
+							{menus.map((menu, index) => (
+								<SidebarMenuItem key={index.toString()}>
 									<Link {...menu.link}>
 										{(active) => (
 											<SidebarMenuButton isActive={active.isActive}>
@@ -50,6 +62,17 @@ export const AdminSidebar = () => {
 					</SidebarGroupContent>
 				</SidebarGroup>
 			</SidebarContent>
+
+			<SidebarFooter>
+				<SidebarMenuItem>
+					<Link to={"/sign-out"} preload={false}>
+						<SidebarMenuButton>
+							<LogOutIcon />
+							退出登录
+						</SidebarMenuButton>
+					</Link>
+				</SidebarMenuItem>
+			</SidebarFooter>
 		</Sidebar>
 	);
 };

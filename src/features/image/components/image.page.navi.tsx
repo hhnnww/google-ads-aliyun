@@ -6,6 +6,7 @@ export const ImagePageNavi = (props: { currentPage: number }) => {
 	return (
 		<ButtonGroup>
 			<Button
+				nativeButton={false}
 				disabled={props.currentPage === 1}
 				variant={props.currentPage === 1 ? "ghost" : "default"}
 				render={(buttonProps) => (

@@ -9,7 +9,7 @@ export const PageCommentSingle = (props: {
 	saler: TlgPageFrontTypes["get"]["activeSaler"];
 }) => {
 	return (
-		<div className="flex flex-col gap-6 bg-white p-6 lg:p-12 rounded-md border border-[#f1f1f1]">
+		<div className="flex flex-col gap-6 bg-white p-6 lg:p-12 lg:pb-10 rounded-md">
 			<PageAuthor
 				avatarObj={props.comment.avatarObj}
 				authorName={props.comment.author}

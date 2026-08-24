@@ -31,6 +31,15 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 				rel: "stylesheet",
 				href: appCss,
 			},
+			{
+				rel: "icon",
+				href: "/SVG/icon.svg",
+			},
+			{
+				rel: "shortcut icon",
+				href: "/SVG/icon.svg",
+				type: "image/svg+xml",
+			},
 		],
 	}),
 	shellComponent: RootDocument,
@@ -41,6 +50,7 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 function RootDocument({ children }: { children: React.ReactNode }) {
 	let mode = "dark";
 	let lang = "en";
+
 	const pathname = useRouterState({
 		select: (s) => s.location.pathname,
 	});

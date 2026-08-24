@@ -19,12 +19,14 @@ export const ImageCreateButton = (props: {
 	const [open, setOpen] = useState(false);
 	return (
 		<Dialog open={open} onOpenChange={setOpen}>
-			<DialogTrigger>
-				<Button>
-					<ImagePlusIcon />
-					{props.label || "创建图片"}
-				</Button>
-			</DialogTrigger>
+			<DialogTrigger
+				render={(dialogProps) => (
+					<Button {...dialogProps}>
+						<ImagePlusIcon />
+						{props.label || "创建图片"}
+					</Button>
+				)}
+			></DialogTrigger>
 
 			<DialogContent>
 				<DialogHeader>

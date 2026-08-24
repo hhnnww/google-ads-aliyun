@@ -4,7 +4,6 @@ import { Button } from "#/components/ui/button.tsx";
 import { Dialog, DialogTrigger } from "#/components/ui/dialog.tsx";
 import { AdminContentView } from "#/features/admin/components/admin.content.view.tsx";
 import { TlgCommentForm } from "#/features/travelogue/tlg.comment/components/form.tsx";
-import { TlgCommentRemoveButton } from "#/features/travelogue/tlg.comment/components/remove.button.tsx";
 import type { TlgCommentRouterTypes } from "#/features/travelogue/tlg.comment/orpc.ts";
 import { TlgCommentImageMapViewList } from "#/features/travelogue/tlg.comment.image/components/view.list.tsx";
 
@@ -41,11 +40,6 @@ export const TlgCommentView = (props: {
 							close={() => setOpen(false)}
 						/>
 					</Dialog>
-
-					<TlgCommentRemoveButton
-						commentId={props.commentSelect.id}
-						pageId={props.commentSelect.pageId}
-					/>
 				</div>
 			}
 		/>
