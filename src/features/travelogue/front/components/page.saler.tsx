@@ -43,7 +43,7 @@ export const TlgPageSaler = (props: {
 							className="h-18"
 						/>
 					</div>
-					<DialogTitle className="font-bold text-xl">
+					<DialogTitle className="font-bold text-xl text-[#92640C]">
 						聯繫金牌顧問{props.saler.name}
 					</DialogTitle>
 					<DialogDescription>

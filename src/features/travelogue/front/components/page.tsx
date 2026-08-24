@@ -1,4 +1,5 @@
 import { PageCommentSingle } from "#/features/travelogue/front/components/page.comment.single.tsx";
+import { TlgPageFooter } from "#/features/travelogue/front/components/page.footer.tsx";
 import { TlgPageHeader } from "#/features/travelogue/front/components/page.header.tsx";
 import { PageTravelogue } from "#/features/travelogue/front/components/page.travelogue.tsx";
 import type { TlgPageFrontTypes } from "#/features/travelogue/front/orpc.ts";
@@ -23,6 +24,7 @@ export const FrontPage = (props: { page: TlgPageFrontTypes["get"] }) => {
 					))}
 				</div>
 			</div>
+			<TlgPageFooter />
 		</div>
 	);
 };
