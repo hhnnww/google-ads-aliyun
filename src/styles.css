@@ -12,6 +12,7 @@
 @plugin '@tailwindcss/typography';
 @import 'tw-animate-css';
 
+
 @custom-variant dark (&:is(.dark *));
 
 :root {
@@ -140,4 +141,6 @@
   .container-tlg {
     @apply max-w-230 mx-auto px-6;
   }
+
+
 }

@@ -5,13 +5,7 @@ import { orpc } from "#/orpc/client.ts";
 export const Route = createFileRoute("/tlg/page/$id")({
 	component: RouteComponent,
 	loader: async (ctx) => {
-		return ctx.context.queryClient.ensureQueryData(
-			orpc.frontRouter.get.queryOptions({
-				input: {
-					pageId: Number(ctx.params.id),
-				},
-			}),
-		);
+		return orpc.frontRouter.get.call({ pageId: Number(ctx.params.id) });
 	},
 
 	head: (ctx) => ({
