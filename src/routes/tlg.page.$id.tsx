@@ -21,5 +21,5 @@ function RouteComponent() {
 
 	// return <FrontPage page={page} />;
 
-	return <pre className="">{JSON.stringify(page, null, 4)}</pre>;
+	return <pre className="">fuck you</pre>;
 }
