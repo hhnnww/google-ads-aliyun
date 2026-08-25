@@ -1,5 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { FrontPage } from "#/features/travelogue/front/components/page.tsx";
 import { orpc } from "#/orpc/client.ts";
 
 export const Route = createFileRoute("/tlg/page/$id")({
@@ -20,5 +19,7 @@ export const Route = createFileRoute("/tlg/page/$id")({
 function RouteComponent() {
 	const page = Route.useLoaderData();
 
-	return <FrontPage page={page} />;
+	// return <FrontPage page={page} />;
+
+	return <pre className="">{JSON.stringify(page, null, 4)}</pre>;
 }

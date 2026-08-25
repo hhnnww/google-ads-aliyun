@@ -29,7 +29,10 @@ const get = async (pageId: number) => {
 		},
 	});
 
-	const activeSaler = salerResult[0];
+	// 获取当前时间的小时，用这个数字除以salerReslult,得到应该显示在前台的saler
+	const currentHour = new Date().getHours();
+	const salerIndex = Math.floor(currentHour / salerResult.length);
+	const activeSaler = salerResult[salerIndex % salerResult.length];
 
 	if (!tlgPageResult || !activeSaler) {
 		throw new Error("page not found");
